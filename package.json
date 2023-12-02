@@ -1,11 +1,14 @@
 {
+  "homepage": "https://paolovv.github.io/ProgettoJavascriptAdvanced",
   "name": "javascript_advanced",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack server",
-    "build": "webpack"
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
     "dotenv": "^16.3.1",
     "favicons": "^7.1.4",
     "favicons-webpack-plugin": "^6.0.1",
+    "gh-pages": "^6.1.0",
     "html-webpack-plugin": "^5.5.3",
     "image-webpack-loader": "^8.1.0",
     "style-loader": "^3.3.3",
