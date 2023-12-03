@@ -16,8 +16,14 @@ module.exports = {
                 use:["style-loader", "css-loader"]
             },
             {
-                type: "asset/resource",
-                test: /\.(jpg|jpeg|png)/
+                // type: "asset/resource",
+                test: /\.(jpg|jpeg|png)/,
+                use: {
+                    loader: "img-optimize-loader",
+                    options: {
+                        compress: { mode: "low" }
+                    }
+                }
             }
         ]
     },
