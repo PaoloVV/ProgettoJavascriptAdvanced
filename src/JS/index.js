@@ -6,10 +6,11 @@ const titleDiv = document.getElementById("title-div")
 const leftNavbar = document.querySelector(".left-navbar")
     leftNavbar.appendChild(laptop())
 const listStories = document.querySelector(".list-stories")
-let elencoTotale = new Array()
+let allNews = new Array()
 let loadedID = 0;
-const btnCarica10 = document.getElementById("btn-carica-10")
+const btnLoadMore10 = document.getElementById("btn-load-more-10")
 const loader = document.getElementById("loading-wrapper");
+
 const loaderBtn = document.getElementById("loading-btn")
 const loadMore = document.getElementById("load-more")
 
@@ -24,10 +25,10 @@ const loadMore = document.getElementById("load-more")
             const res = await axios.get("https://hacker-news.firebaseio.com/v0/newstories.json")
             const dati = res.data
             dati.forEach(dato => {
-                elencoTotale.push(dato)
+                allNews.push(dato)
             });
             // console.log(elenco, "console di getData")
-            return elencoTotale
+            return allNews
         } catch(err){
             console.log(err)
         }
@@ -37,8 +38,8 @@ const loadMore = document.getElementById("load-more")
 
     const newsDetails = async (Id) =>{
         try{
-            const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${elencoTotale[Id]}.json`)
-            console.log(resp, "Dettagli news")
+            const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${allNews[Id]}.json`)
+            // console.log(resp, "Dettagli news")
                 let casellaNews = document.createElement("div")
                     casellaNews.className = "casella-news"
                 let casellaNewsBy = document.createElement("div")
@@ -55,6 +56,7 @@ const loadMore = document.getElementById("load-more")
                     titleNews.innerText = resp.data.title
                 let byNews = document.createElement("p")
                     byNews.innerText = `-BY: ${resp.data.by}-`;
+            //FORMATTAZIONE ORARIO   
                 let timeNews = new Date((resp.data.time)*1000)
                 let year = timeNews.getFullYear();
                 let month = timeNews.getMonth() + 1 + "-"
@@ -64,7 +66,7 @@ const loadMore = document.getElementById("load-more")
                 parseInt(minutes) < 10 ? minutes = "0" + minutes : null;
                 let time = document.createElement("p")
                     time.innerText = `${dayNumber}${month}${year} ${hours}${minutes}`
-                    // console.log(time, "ORARIO!")
+                // console.log(time, "ORARIO!")
 
                 casellaNews.appendChild(titleNews)
                 casellaNewsBy.appendChild(byNews)
@@ -111,15 +113,14 @@ const loadMore = document.getElementById("load-more")
 
 //INVOCAZIONE FUNZIONI
 
-
-    getData();
     //Al caricamento della pagina
-    // (console.log(elencoTotale, "questo è l'elenco di tutti gli ID"));
+        getData();
+    // (console.log(allNews, "questo è l'elenco di tutti gli ID"));
 
     //Caricamento dei primi 10 risultati
-    setTimeout(mostra10, 1500)
+        setTimeout(mostra10, 1500)
     //Evento button Load more
-    btnCarica10.addEventListener("click", ()=>{setTimeout(mostra10, 1500)} )
-    btnCarica10.addEventListener("click", ()=>{loadMore.style.display = "none"} )
-    btnCarica10.addEventListener("click", ()=>{loaderBtn.style.display = "flex"} )
+        btnLoadMore10.addEventListener("click", ()=>{setTimeout(mostra10, 1500)} )
+        btnLoadMore10.addEventListener("click", ()=>{loadMore.style.display = "none"} )
+        btnLoadMore10.addEventListener("click", ()=>{loaderBtn.style.display = "flex"} )
 

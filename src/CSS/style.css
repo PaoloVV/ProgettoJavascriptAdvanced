@@ -155,7 +155,7 @@ body{
 
 /* BUTTON LOAD MORE */
 
-    #btn-carica-10{
+    #btn-load-more-10{
         width: 300px;
         height: 70px;
         margin: 30px 0;
@@ -170,7 +170,7 @@ body{
         justify-content: center;
         align-items: center;
     }
-    #btn-carica-10:hover{
+    #btn-load-more-10:hover{
         background: #fff;
         color: black;
         border: 3px solid black;
@@ -285,6 +285,11 @@ body{
                 min-width: 30px;
                 min-height: 30px;
                 margin: 5px;
+            }
+
+            #btn-load-more-10{
+                max-width: 85%;
+                font-size: 2em;
             }
         }
 
