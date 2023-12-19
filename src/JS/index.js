@@ -106,7 +106,7 @@ const loadMore = document.getElementById("load-more")
 
     function mostra10(){
         load()
-        console.log(loadedID, "console loaded fine del ciclo")
+        // console.log(loadedID, "loaded fine del ciclo")
     }
 
  
