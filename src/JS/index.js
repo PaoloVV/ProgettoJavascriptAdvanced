@@ -1,6 +1,8 @@
 import axios from "axios";
 import "../CSS/style.css";
 import laptop from "./laptop"
+import _ from "lodash"
+// const _ = require("lodash")
 
 const titleDiv = document.getElementById("title-div")
 const leftNavbar = document.querySelector(".left-navbar")
@@ -40,6 +42,11 @@ const loadMore = document.getElementById("load-more")
         try{
             const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${allNews[Id]}.json`)
             // console.log(resp, "Dettagli news")
+//IMPLEMENTAZIONE LODASH
+            const title = _.get(resp, "data.title", "Title not available")
+            const by = _.get(resp, "data.by", "Author not available")
+            const urlNews = _.get(resp, "data.url", "Link not available")
+            const publicationTime = _.get(resp, "data.time", "not available")
                 let casellaNews = document.createElement("div")
                     casellaNews.className = "casella-news"
                 let casellaNewsBy = document.createElement("div")
@@ -49,15 +56,15 @@ const loadMore = document.getElementById("load-more")
                 let linkNews = document.createElement("a")
                     linkNews.innerText = "Click here to read this news"
                     linkNews.className = ("link-news")
-                    linkNews.setAttribute("href", `${resp.data.url}`)
+                    linkNews.setAttribute("href", `${urlNews}`)
                     linkNews.setAttribute("target", "_blank")
                     linkNews.setAttribute("rel", "noopener")
                 let titleNews = document.createElement("h4")
-                    titleNews.innerText = resp.data.title
+                    titleNews.innerText = title
                 let byNews = document.createElement("p")
-                    byNews.innerText = `-BY: ${resp.data.by}-`;
+                    byNews.innerText = `-BY: ${by}-`;
             //FORMATTAZIONE ORARIO   
-                let timeNews = new Date((resp.data.time)*1000)
+                let timeNews = new Date((publicationTime)*1000)
                 let year = timeNews.getFullYear();
                 let month = timeNews.getMonth() + 1 + "-"
                 let dayNumber = timeNews.getDate() + "-"
