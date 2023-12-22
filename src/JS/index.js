@@ -125,7 +125,7 @@ const loadMore = document.getElementById("load-more")
     // (console.log(allNews, "questo è l'elenco di tutti gli ID"));
 
     //Caricamento dei primi 10 risultati
-        setTimeout(mostra10, 1500)
+        setTimeout(mostra10, 2000)
     //Evento button Load more
         btnLoadMore10.addEventListener("click", ()=>{setTimeout(mostra10, 1500)} )
         btnLoadMore10.addEventListener("click", ()=>{loadMore.style.display = "none"} )
